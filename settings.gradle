@@ -1,1 +1,1 @@
-include ':enhanced-content-layout', ':enhancedcontentlayout'
+include ':enhancedcontentlayout'

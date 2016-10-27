@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/enhanced-content-layout.iml" filepath="$PROJECT_DIR$/enhanced-content-layout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/enhanced-content-layout/enhanced-content-layout-enhanced-content-layout.iml" filepath="$PROJECT_DIR$/enhanced-content-layout/enhanced-content-layout-enhanced-content-layout.iml" />
       <module fileurl="file://$PROJECT_DIR$/enhancedcontentlayout/enhancedcontentlayout.iml" filepath="$PROJECT_DIR$/enhancedcontentlayout/enhancedcontentlayout.iml" />
     </modules>
   </component>

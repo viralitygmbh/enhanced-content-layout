@@ -3,18 +3,17 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url  "http://dl.bintray.com/de-virality/enhanced-content-layout"
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.7"
 }
 
 allprojects {
@@ -25,4 +24,30 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+apply plugin: 'java'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def USER = properties.getProperty('bintray.user')
+def API_KEY = properties.getProperty('bintray.apikey')
+
+bintray {
+    configurations = ['archives']
+    pkg {
+        user = USER
+        key = API_KEY
+        repo = 'maven'
+        name = 'enhanced-content-layout'
+        userOrg = 'viralitygmbh'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/viralitygmbh/enhanced-content-layout.git'
+
+        version {
+            name = '0.2.1'
+            desc = 'A wrapper layout which allows easy integration of swipe to refresh and showing progress and messages.'
+            released  = new Date()
+        }
+    }
 }
