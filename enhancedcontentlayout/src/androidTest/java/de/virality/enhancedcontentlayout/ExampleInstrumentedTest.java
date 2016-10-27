@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("de.virality.enhancedcontentlayout", appContext.getPackageName());
+        assertEquals("de.virality.enhancedcontentlayout.test", appContext.getPackageName());
     }
 }

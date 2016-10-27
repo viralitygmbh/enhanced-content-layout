@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EnhancedContentLayout.iml" filepath="$PROJECT_DIR$/EnhancedContentLayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/enhanced-content-layout/enhanced-content-layout.iml" filepath="$PROJECT_DIR$/enhanced-content-layout/enhanced-content-layout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/enhanced-content-layout.iml" filepath="$PROJECT_DIR$/enhanced-content-layout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/enhanced-content-layout/enhanced-content-layout-enhanced-content-layout.iml" filepath="$PROJECT_DIR$/enhanced-content-layout/enhanced-content-layout-enhanced-content-layout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/enhancedcontentlayout/enhancedcontentlayout.iml" filepath="$PROJECT_DIR$/enhancedcontentlayout/enhancedcontentlayout.iml" />
     </modules>
   </component>
 </project>

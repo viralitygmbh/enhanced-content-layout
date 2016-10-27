@@ -1,19 +1,21 @@
 apply plugin: 'com.android.library'
 
 ext {
-    bintrayRepo = 'j-center'
+    bintrayRepo = 'maven'
     bintrayName = 'enhanced-content-layout'
 
     publishedGroupId = 'de.virality.enhanced-content-layout'
     libraryName = 'Enhanced Content Library'
-    artifact = 'enhanced'
+    artifact = 'enhanced-content-layout'
 
     libraryDescription = 'A wrapper layout which allows easy integration of swipe to refresh and showing progress and messages.'
 
-    siteUrl = 'https://github.com/nuuneoi/FBLikeAndroid'
+    siteUrl = 'https://github.com/viralitygmbh/enhanced-content-layout'
+    gitUrl = 'https://github.com/viralitygmbh/enhanced-content-layout.git'
 
     libraryVersion = '0.1'
 
+    developerId = 'de-virality'
     developerName = 'Virality GmbH'
     developerEmail = 'developer@virality.de'
 
@@ -52,4 +54,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
