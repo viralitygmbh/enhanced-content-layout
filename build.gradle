@@ -13,42 +13,9 @@ buildscript {
     }
 }
 
-//plugins {
-//    id "com.jfrog.bintray" version "1.7"
-//}
-
 allprojects {
     repositories {
         jcenter()
-    }
-}
-
-group = 'de.virality.enhanced-content-layout'
-version = '0.2.6'
-
-apply plugin: 'java'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    configurations = ['archives']
-    pkg {
-        user = properties.getProperty('bintray.user')
-        key = properties.getProperty('bintray.apikey')
-        repo = 'maven'
-        name = 'enhanced-content-layout'
-        userOrg = 'viralitygmbh'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/viralitygmbh/enhanced-content-layout.git'
-
-        version {
-            name = '0.2.6'
-            desc = 'A wrapper layout which allows easy integration of swipe to refresh and showing progress and messages.'
-            released  = new Date()
-        }
     }
 }
 
