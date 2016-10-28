@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 25
@@ -8,55 +9,13 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 7
-        versionName "0.2.6"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        versionCode 10
+        versionName '0.2.9'
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-def siteUrl = 'https://github.com/viralitygmbh/enhanced-content-layout'      // Homepage URL of the library
-def gitUrl = 'https://github.com/viralitygmbh/enhanced-content-layout.git'   // Git repository URL
-
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-
-                // Add your description here
-                name 'enhanced-content-layout'
-                url siteUrl
-                version '0.2.6'
-
-                // Set your license
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-//                        id '<your user ID>'
-                        name 'Benjamin Bisinger'
-                        email 'bisinger@virality.de'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
         }
     }
 }
@@ -72,19 +31,68 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+
+//archivesBaseName = 'enhanced-content-layout'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+def siteUrl = 'https://github.com/viralitygmbh/enhanced-content-layout'      // Homepage URL of the library
+def gitUrl = 'https://github.com/viralitygmbh/enhanced-content-layout.git'   // Git repository URL
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom.project {
+            packaging 'aar'
+
+            group 'de.virality'
+            name 'enhanced-content-layout'
+            artifactId 'enhanced-content-layout'
+            url siteUrl
+            version '0.2.9'
+
+            // Set your license
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+            developers {
+                developer {
+//                        id '<your user ID>'
+                    name 'Benjamin Bisinger'
+                    email 'bisinger@virality.de'
+                }
+            }
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
 }
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
+
+group = 'de.virality'
+version = '0.2.9'
+
+bintray {
+    user = properties.getProperty('bintray.user')
+    key = properties.getProperty('bintray.apikey')
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'enhanced-content-layout'
+        userOrg = 'viralitygmbh'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/viralitygmbh/enhanced-content-layout.git'
+
+        version {
+            name = '0.2.9'
+            desc = 'A wrapper layout which allows easy integration of swipe to refresh and showing progress and messages.'
+            released  = new Date()
+        }
+    }
 }
