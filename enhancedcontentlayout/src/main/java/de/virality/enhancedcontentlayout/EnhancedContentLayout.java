@@ -80,13 +80,36 @@ public class EnhancedContentLayout extends FrameLayout {
      */
     public EnhancedContentLayout(@NonNull Context context, @LayoutRes int contentLayout, @Nullable ViewGroup container, @Nullable LayoutInflater inflater) {
         super(context);
+        if (inflater == null) inflater = LayoutInflater.from(context);
+        this.content = inflater.inflate(contentLayout, container, false);
+        initAdditions(context, this, inflater);
+    }
 
+    private void init(@NonNull Context context){
+        FrameLayout frameLayout = new FrameLayout(context);
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            ((ViewGroup) child.getParent()).removeView(child);
+            frameLayout.addView(child);
+        }
+        this.content = frameLayout;
+
+        initAdditions(context, this, null);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        init(getContext());
+    }
+
+    private void initAdditions(@NonNull Context context, @NonNull ViewGroup container, @Nullable LayoutInflater inflater) {
         if (inflater == null) inflater = LayoutInflater.from(context);
         View additions = inflater.inflate(R.layout.enhanced_content_layout, container, false);
-        this.content = inflater.inflate(contentLayout, container, false);
-        this.progress = (ProgressBar) additions.findViewById(R.id.progress);
-        this.message = (TextView) additions.findViewById(R.id.message);
-        this.swipeRefreshLayout = (SwipeRefreshLayout) additions.findViewById(R.id.swipe_refresh_layout);
+
+        this.progress = (ProgressBar) additions.findViewById(R.id.enhanced_content_layout_progress);
+        this.message = (TextView) additions.findViewById(R.id.enhanced_content_layout_message);
+        this.swipeRefreshLayout = (SwipeRefreshLayout) additions.findViewById(R.id.enhanced_content_layout_swipe_refresh_layout);
         this.swipeRefreshLayout.setEnabled(false);
         this.swipeRefreshLayout.addView(content);
 
